@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Notes{% endblock title %}</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<style>
+	.headr{
+	position:fixed;
+	width:100%;
+	margin-top:-50px;
+	z-index:2;
+	}
+
+    .nav{
+			height: 95vh;
+			width: 250px;
+			padding-top: 20px;
+
+			scroll-behavior: hidden;
+			overflow-x: hidden;
+			position: fixed;
+			background:#B7F7DC;
+			border-right: 1px solid #5cb85c;
+			border-radius:10px;
+		}
+		.nav a{
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 15px;
+			color: #145A32;
+			display: block;
+			font-family: 'Noto Sans JP', sans-serif;
+		}
+		.nav b{
+		color: #145A32;
+		}
+		.nav a:active{
+		color:#ffffff;
+		}
+		.main {
+  margin-left:260px;
+  margin-top:50px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+</style>
+<body>
+<div class="headr">
+    <h4 class="alert alert-success text-center ">Django Notes</h4>
+</div>
+<div class="nav-link nav alert alrt-success">
+			<b>Django Bsics</b>
+			<a href="/basicsdjango/">Django Basics</a>
+			<a href="#installdjango">Django Installation</a>
+			<a href="#mvt">Django  MVT </a>
+			<a href="#createproject">Create Django Project</a>
+			<a href="#createapp">Create App</a>
+			<b>Django Form</b>
+			<a href="/djangoform/">Django Forms</a>
+			<a href="#renderform">Render HTML Forms</a>
+			<a href="#djangoform">Django Form Field </a>
+			<a href="#">Form Field Widgets</a>
+			<a href="#">Initial Form Data</a>
+			<b>Django Views</b>
+			<a href="#">Create View</a>
+			<a href="#">List View</a>
+			<a href="#">Detail View</a>
+			<a href="#">Update View</a>
+			<a href="#">Delete View</a>
+			<b>Django Templates</b>
+			<a href="#">Django Templates</a>
+			<a href="#">Templates Filter</a>
+			<a href="#">Template Tags</a>
+			<a href="#">Variable</a>
+			<a href="#">Boolean Operators</a>
+			<a href="#">For Loops</a>
+			<a href="#">if – Django Templates</a>
+			<a href="#">Template Inheritance</a>
+
+
+</div>
+<div class="main">
+  {% block container %}
+	{% endblock container %}
+</div>
+</body>
+</html>

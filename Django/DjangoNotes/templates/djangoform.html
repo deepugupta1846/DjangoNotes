@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %}Django Form{% endblock title %}
+{% block container %}
+<h2 id="mvt"><b>Django Form</b></h2>
+<div>
+    <p>When one creates a Form class, the most important part is defining the fields of the form.
+        Each field has custom validation logic, along with a few other hooks.
+        This article revolves around various fields one can use in a form along with various features
+        and techniques concerned with Django Forms.
+        Forms are basically used for taking input from the user in some manner and using that information for
+        logical operations on databases. For example, Registering a user by taking input as his
+        name, email, password, etc.</p>
+    <p>Django maps the fields defined in Django forms into HTML input fields.
+        Django handles three distinct parts of the work involved in forms:</p>
+    <ul>
+        <li>preparing and restructuring data to make it ready for rendering</li>
+        <li>creating HTML forms for the data</li>
+        <li>receiving and processing submitted forms and data from the client</li>
+    </ul>
+    <p>Note that all types of work done by Django forms can be done with advanced HTML stuff,
+        but Django makes it easier and efficient especially the validation part.
+        Once you get hold of Django forms you will just forget about HTML forms.</p>
+    <p><b>Syntax :</b></p>
+    <p>Django Fields work like Django Model Fields and have the syntax :-</p>
+    <p class="text bg-secondary text-white p-3">field_name = forms.FieldType(**options) </p>
+    <pre><b>
+    from django import forms
+# creating a form
+class Student(forms.Form):
+    Sname = forms.CharField(max_length=50)
+    RollNo = forms.IntegerField()
+    clas = form.CharField(max_length=10)</b>
+    </pre>
+    <h5 id="djangoform"><b>Using Django Forms</b></h5>
+    <p>To use Django Forms, one needs to have a project and an app working in it.
+        After you start an app you can create form in app/forms.py.
+        Before starting to use a form let’s check how to start a project and implement Django Forms.</p>
+    <p><b>Creating a Django Form</b></p>
+    <p>Creating a form in Django is completely similar to creating a model,
+        one needs to specify what fields would exist in the form and of what type.
+        For example, to input, a registration form one might need First Name (CharField),
+        Roll Number (IntegerField) and so on.</p>
+    <p><b>Syntax</b></p>
+    <pre class="text bg-secondary text-white">
+        <b>
+        from django import forms
+class FormName(models.Model):
+         # each field would be mapped as an input field in HTML
+        field_name = models.Field(**options)
+        </b>
+    </pre>
+    <p>To create a form, in app/forms.py Enter the code,</p>
+    <pre>
+        <b>
+    <p class="text text-success">
+    # import the standard Django Forms
+    # from built-in library</p>
+    from django import forms
+
+# creating a form
+class InputForm(forms.Form):
+
+    first_name = forms.CharField(max_length = 200)
+    last_name = forms.CharField(max_length = 200)
+    roll_number = forms.IntegerField(
+                     help_text = "Enter 6 digit roll number"
+                     )
+    class = forms.CharField(widget = forms.InputText())
+        </b>
+    </pre>
+    <p id="renderform"><b>Render Django Forms</b></p>
+    <p>Django form fields have several built-in methods to ease the work of the developer
+        but sometimes one needs to implement things manually for customizing User Interface(UI).
+        </p>
+    <p>To render this form into a view, move to views.py and create a home_view as below.</p>
+    <pre><b>
+    from django.shortcuts import render
+    from .forms import InputForm
+
+# Create your views here.
+def home_view(request):
+    context ={}
+    context['form']= InputForm()
+    return render(request, "home.html", context)
+    </b></pre>
+    <p>In view one needs to just create an instance of the form class created above in forms.py.</p>
+    <p>Now let’s edit templates > home.html</p>
+    <pre>
+   &#60;form action = "" method = "post"	&#62;
+       &#123;% csrf_token %&#125;
+        &#123;&#123;form &#125;&#125;
+     	&#60;input type="submit" value=Submit"&#62;
+    &#60;/form &#62;
+    </pre>
+    <p class="text bg-danger text-white p-3" >Now, visit http://localhost:8000/</p>
+
+<p ><b>Create Django Form from Models</b></p>
+<p>Django ModelForm is a class that is used to directly convert a model into a Django form.
+    If you’re building a database-driven app, chances are you’ll have forms that map closely to Django models.
+    Now when we have our project ready, create a model in app/models.py,</p>
+    <p>
+        <pre><b>
+# import the standard Django Model
+# from built-in library
+from django.db import models
+
+# declare a new model with a name "Person"
+class Person(models.Model):
+        # fields of the model
+    title = models.CharField(max_length = 200)
+    description = models.TextField()
+    last_modified = models.DateTimeField(auto_now_add = True)
+        # renames the instances of the model
+        # with their title name
+    def __str__(self):
+        return self.title
+</b></pre>
+    </p>
+    <p>To create a form directly for this model, dive into geeks/forms.py and Enter following code,</p>
+    <pre><b>
+# import form class from django
+from django import forms
+
+# import Person from models.py
+from .models import Person
+
+# create a ModelForm
+class PersonForm(forms.ModelForm):
+    # specify the name of model to use
+    class Meta:
+        model = Person
+        fields = "__all__"
+    </b></pre>
+    <p class="text bg-danger text-white p-3">Now visit http://127.0.0.1:8000/,</p>
+</div>
+{% endblock container %}
